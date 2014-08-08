@@ -4,7 +4,7 @@ module Microdata
     attr_reader :items, :doc
 
     def initialize(content, page_url=nil)
-      @doc = Nokogiri::HTML(content.read)
+      @doc = Nokogiri::HTML(content)
       @page_url = page_url
       @items = extract_items
     end
