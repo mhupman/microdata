@@ -47,8 +47,8 @@ module Microdata
     # This returns an empty string if can't form a valid
     # absolute url as per the Microdata spec.
     def make_absolute_url(url)
-      return url unless URI.parse(url).relative?
       begin
+        return url unless URI.parse(url).relative?
         URI.parse(@page_url).merge(url).to_s
       rescue URI::Error
         url
