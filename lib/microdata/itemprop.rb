@@ -72,7 +72,12 @@ module Microdata
       element = @element.name
       if non_textcontent_element?(element)
         attribute = NON_TEXTCONTENT_ELEMENTS[element]
-        value = @element.attribute(attribute).value
+        value = nil
+        begin
+          value = @element.attribute(attribute).value
+        rescue
+          raise "Error Extracting value of #{attribute} attribute on #{@element}. The required attribute is missing."
+        end
         url_attribute?(attribute) ? make_absolute_url(value) : value
       else
         @element.inner_text.strip
