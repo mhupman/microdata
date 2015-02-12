@@ -76,7 +76,7 @@ module Microdata
         begin
           value = @element.attribute(attribute).value
         rescue
-          raise "could not extract value for attribute #{attribute} on #{@element}"
+          raise "Error Extracting value of #{attribute} attribute on #{@element}. The required attribute is missing."
         end
         url_attribute?(attribute) ? make_absolute_url(value) : value
       else
